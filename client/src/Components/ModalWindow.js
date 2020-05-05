@@ -2,13 +2,12 @@ class ModalWindow extends HTMLElement {
   connectedCallback() {
     this.button = document.createElement('app-loginbutton');
     this.registerForm = document.createElement('app-registrationform');
-    this.loginForm = document.createElement('app-loginform');
-    this.modal = document.createElement('app-modal');
     this.registerButton = document.createElement('app-registerButton');
 
     this.renderButton();
     this.chooseBox = document.querySelector('.choose-box');
     this.chooseBox.appendChild(this.button);
+    this.body = document.querySelector('body');
 
     this.loginOrSignButton = document.querySelector('.beginButton').addEventListener('click', () => {
       this.renderModal();
@@ -43,17 +42,20 @@ class ModalWindow extends HTMLElement {
     </div>`;
   }
   renderModal() {
-    this.modal.innerHTML = `
+    this.innerHTML = `
     <div class="modal-bg"> 
       <div class="modal"></div>
     </div>`;
 
+    this.modal = this.querySelector('.modal');
+    this.loginForm = document.createElement('app-loginform');
+
     this.renderRegisterButton();
     this.modal.appendChild(this.loginForm);
     this.modal.appendChild(this.registerButton);
-    this.chooseBox.appendChild(this.modal);
+    this.body.appendChild(this.modal);
     this.closeModal = document.querySelector('.pickClose').addEventListener('click', () => {
-      this.chooseBox.removeChild(this.modal);
+      this.body.removeChild(this.modal);
     });
   }
 }

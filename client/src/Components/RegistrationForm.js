@@ -17,7 +17,6 @@ class RegistrationForm extends HTMLElement {
         this.token = await response.headers.auth;
         localStorage.setItem('token', this.token);
         document.querySelector('.userPlace').innerHTML = `<label>SIGNED UP</label>`;
-        document.querySelector('.choose-box').removeChild(document.createElement('app-modal'));
       } catch (error) {
         console.dir(error);
       }

@@ -16,18 +16,12 @@
       <div class="bar">
         <div class="ui grid">
           <div class="five wide column"></div>
-          <div class="column six wide searchPlace">
-            <app-searchbar></app-searchbar>
-          </div>
-          <div class="column five wide Images userPlace choose-box">
-            <app-modalwindow></app-modalwindow>
-          </div>
+          <app-searchbar class="column six wide searchPlace"></app-searchbar>
+          <app-modalwindow class="toAction column five wide Images userPlace choose-box"></app-modalwindow>
         </div>
         <app-apipicker></app-apipicker>
       </div>
-      <div class="ui container center aligned">
-        <app-imagelist></app-imagelist>
-      </div>
+      <app-imagelist class="ui container center aligned"></app-imagelist>
     </div>
     <div class="wrapper"></div>
   </body>

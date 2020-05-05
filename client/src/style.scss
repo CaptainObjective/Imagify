@@ -221,6 +221,7 @@ img {
 
 .modal-bg {
   position: fixed;
+  //z-index: 2;
   width: 100%;
   height: 100vh;
   top: 0;
@@ -232,6 +233,14 @@ img {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 1s;
+  .modal {
+    background-color: white;
+    width: 70%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 
 .registerModal {
@@ -243,39 +252,14 @@ img {
   align-items: center;
 }
 
-.modal {
-  background-color: white;
-  width: 70%;
-  height: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .userPlace {
-  //max-width: 100%;
-  //padding-top: 15px;
-
-  //padding-bottom: 15px;
-  //margin-bottom: 20px;
   //display: grid;
   align-items: center;
   justify-content: center;
-  // background: rgba(255, 255, 255, 0.9);
-  // border: white solid 1px;
-  // border-radius: 5px;
 }
 
 .searchPlace {
   max-width: 100%;
-  //padding-top: 15px;
-
-  //padding-bottom: 15px;
-  //margin-bottom: 20px;
-  display: grid;
   align-items: center;
   justify-content: center;
-  // background: rgba(255, 255, 255, 0.9);
-  // border: white solid 1px;
-  // border-radius: 5px;
 }

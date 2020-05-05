@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -50,16 +50,18 @@ class LoginForm extends HTMLElement {
       this.email = this.querySelector('#e-mail').value;
       this.password = this.querySelector('#password').value;
       try {
-        const response = await axios.post('api/login', {
+        const { data } = await axios.post('api/login', {
           email: `${this.email}`,
           password: `${this.password}`,
         });
-        this.token = await response.data.token;
+        this.token = data.token;
         localStorage.setItem('token', this.token);
         document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
-        document.querySelector('.choose-box').removeChild(document.createElement('app-modal'));
-      } catch (error) {
-        console.dir(error);
+      } catch (ex) {
+        $('body').toast({
+          message: ex.response.data.error,
+        });
+        console.error(ex);
       }
     });
   }
@@ -67,7 +69,7 @@ class LoginForm extends HTMLElement {
   renderForm() {
     this.innerHTML = `  
        
-      <div class="ui form">
+      <div class="ui form loginStyle">
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
