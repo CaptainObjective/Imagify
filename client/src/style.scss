@@ -233,14 +233,15 @@ img {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 1s;
-  .modal {
-    background-color: white;
-    width: 70%;
-    height: 30%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+}
+
+.modal {
+  background-color: white;
+  width: 70%;
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .registerModal {
@@ -253,13 +254,9 @@ img {
 }
 
 .userPlace {
-  //display: grid;
-  align-items: center;
-  justify-content: center;
+  text-align: end;
 }
 
 .searchPlace {
-  max-width: 100%;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }

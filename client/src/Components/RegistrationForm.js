@@ -10,15 +10,18 @@ class RegistrationForm extends HTMLElement {
       this.password = this.querySelector('#password').value;
       this.confirmPassword = this.querySelector('#confirmPassword').value;
       try {
-        const response = await axios.post('/api/register', {
+        const { headers } = await axios.post('/api/register', {
           email: `${this.email}`,
           password: `${this.password}`,
         });
-        this.token = await response.headers.auth;
+        this.token = headers.auth;
         localStorage.setItem('token', this.token);
         document.querySelector('.userPlace').innerHTML = `<label>SIGNED UP</label>`;
-      } catch (error) {
-        console.dir(error);
+      } catch (ex) {
+        $('body').toast({
+          message: ex.response.data.error,
+        });
+        console.error(ex);
       }
     });
     this.rules();
