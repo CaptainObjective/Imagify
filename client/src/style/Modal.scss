@@ -1,6 +1,16 @@
+@import 'partials/mixins';
+
 app-modal {
   #image-modal {
     width: auto;
     height: auto;
+  }
+
+  #reset {
+    padding: 10px;
+  }
+
+  .fields {
+    @include alignItems();
   }
 }

@@ -19,26 +19,39 @@ class UserInfo extends HTMLElement {
         });
         console.log(response);
         store.user = response.data.user;
+        this.avatar = response.data.user.avatar;
+        console.log(this.avatar);
       } catch (ex) {
         console.error(ex);
         this.render();
       }
     }
-    this.render(token);
+    this.render(token, this.avatar);
   }
 
-  render(token) {
+  render(token, avatar) {
     if (!token) {
       this.innerHTML = `<app-loginbutton></app-loginbutton>`;
+    } else if (token && !this.avatar) {
+      this.innerHTML = `
+      <div class="userInfo">
+        <div class="userIcon">
+          <i class="user icon"></i>
+        </div>
+        <div>
+          <label>${store.user.email}</label>
+        </div>
+        <app-settingsbutton></app-settingsbutton>
+      </div>`;
     } else {
       this.innerHTML = `
-    <div class="userInfo">
+      <div class="userInfo">
         <div class="userIcon">
-          <i class="user icon">
-        </i></div>
+          <img src=${this.avatar} class = "avatar"></img>
+        </div>
         <div><label>${store.user.email}</label></div>
         <app-settingsbutton></app-settingsbutton>
-    </div>`;
+      </div>`;
     }
   }
 }

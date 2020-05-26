@@ -14,6 +14,7 @@ router.post('/reset', async (req, res) => {
   const { email } = req.query;
   const user = await User.findOne({ email });
   const tokenLifeTime = 2 * 60 * 60 * 1000;
+  console.log(user);
 
   const token = jwt.sign({ _id: user._id }, jwtKey);
   res.header('auth', token).json({ email });

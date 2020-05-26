@@ -27,7 +27,6 @@ router.post('/', async (req, res) => {
   //token =>value
   res.header('auth', token).send(_.pick(user, ['email', 'favourities']));
 
-
   const itemsWelcom = await Welcome.welcome(user.email);
   await sendWelcomeEmail(user.email, itemsWelcom.subject, itemsWelcom.text, itemsWelcom.html);
 });

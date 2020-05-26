@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import axios from 'axios';
 import { toBase64 } from '../utils';
+import store from '../Store';
 
 class Avatar extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.avatarPlace = document.querySelector('.userIcon');
-    console.log(this.avatarPlace);
+    //this.avatarPlace = document.querySelector('.userIcon');
+    //console.log(this.avatarPlace);
     this.input = this.querySelector('input[type = "file"]');
     document.querySelector('.attachButton').addEventListener('click', () => {
       this.uploadAvatar();
@@ -18,7 +19,7 @@ class Avatar extends HTMLElement {
     try {
       const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
       this.uploadedImage = response.data.avatar;
-      this.renderAvatarImage();
+      store.token.next(token);
       console.log(response);
     } catch (ex) {
       console.error(ex);
@@ -42,13 +43,14 @@ class Avatar extends HTMLElement {
   </div>
 </div>
      
+
     `;
   }
-  renderAvatarImage() {
-    this.avatarPlace.innerHTML = `
-    <img src=${this.uploadedImage} class = "avatar">
-    `;
-  }
+  // renderAvatarImage() {
+  //   this.avatarPlace.innerHTML = `
+  //   <img src=${this.uploadedImage} class = "avatar">
+  //   `;
+  // }
 }
 
 export default Avatar;

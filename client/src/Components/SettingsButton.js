@@ -13,6 +13,9 @@ class SettingsButton extends HTMLElement {
     this.querySelector('#logOut').addEventListener('click', () => {
       this.logOut();
     });
+    this.querySelector('#resetPassword').addEventListener('click', () => {
+      this.resetPassword();
+    });
   }
 
   logOut() {
@@ -31,7 +34,7 @@ class SettingsButton extends HTMLElement {
      <div class="menu">
       <div class="item" id = "favourites">favourites</div>
       <div class="item" id = "setAvatar">set avatar</div>
-      <div class="item" id = "changePassword">change password</div>
+      <div class="item" id = "resetPassword">reset password</div>
       <div class="item" id = "logOut">log out</div>
      </div>
     </div>`;
@@ -43,6 +46,16 @@ class SettingsButton extends HTMLElement {
   get avatarModalContent() {
     return `
       <app-avatar class="content"></<app-avatar>
+    `;
+  }
+
+  resetPassword() {
+    const content = this.resetPasswordModalContent;
+    store.modal.next({ type: 'OPEN', content });
+  }
+  get resetPasswordModalContent() {
+    return `
+      <app-resetpassword class="content"></<app-avatar>
     `;
   }
 }
