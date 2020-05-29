@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const Joi = require('joi');
+const mongoose = require("mongoose");
+const Joi = require("joi");
 
 const User = mongoose.model(
-  'User',
+  "User",
   new mongoose.Schema({
     email: {
       type: String,
@@ -27,7 +27,7 @@ const User = mongoose.model(
 
     resetTokenExpiration: {
       type: String,
-      require: false,
+      required: false,
     },
     facebookProfile: {
       type: Object,
@@ -35,9 +35,9 @@ const User = mongoose.model(
     },
     avatar: {
       type: String,
-      require: false,
+      required: false,
     },
-  }),
+  })
 );
 
 function validate(user) {

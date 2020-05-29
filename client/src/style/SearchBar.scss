@@ -1,9 +1,0 @@
-@import 'partials/mixins';
-
-app-searchbar {
-  @include alignItems();
-  display: flex !important;
-  .searchBarMain {
-    max-width: 100%;
-  }
-}

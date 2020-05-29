@@ -1,9 +1,0 @@
-@import 'partials/mixins';
-
-app-loginorregister {
-  > span {
-    text-decoration: underline;
-    cursor: pointer;
-    @include alignItems();
-  }
-}
