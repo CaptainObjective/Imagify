@@ -1,11 +1,13 @@
-/*eslint-disable */
-
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: {
+    app: ['babel-polyfill', './src/index.js'],
+  },
+
   devServer: {
     port: 8080,
     proxy: { '/api': 'http://localhost:12345' },
@@ -13,7 +15,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
   },
   output: {
-    filename: 'bundle.min.js',
+    filename: '[name].bundle.min.js',
     publicPath: 'dist/',
     path: path.resolve(__dirname, 'public/dist'),
   },
@@ -26,6 +28,10 @@ module.exports = {
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
   resolve: {
     extensions: ['.js'],
@@ -36,8 +42,9 @@ module.exports = {
         test: [/\.scss$/, /\.css$/],
         use: [
           'style-loader', //3. Inject styles into DOM
+          MiniCssExtractPlugin.loader,
           'css-loader', //2. Turns css into commonjs
-          'postcss-loader',
+          //          'postcss-loader',
           'sass-loader', //1. Turns sass into css
         ],
       },
